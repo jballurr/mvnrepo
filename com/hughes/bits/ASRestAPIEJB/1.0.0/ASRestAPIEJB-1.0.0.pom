@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.hughes.bits</groupId>
+	<artifactId>ASRestAPIEJB</artifactId>
+	<version>1.0.0</version>
+	<packaging>ejb</packaging>
+	<name>AS RestAPI EJB</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
+		<version.org.jboss.spec.jboss.javaee.6.0>3.0.0.Final</version.org.jboss.spec.jboss.javaee.6.0>
+
+		<version.compiler.plugin>2.3.1</version.compiler.plugin>
+		<version.ejb.plugin>2.3</version.ejb.plugin>
+
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+
+	</properties>
+<repositories>
+	  <repository>
+        <id>CSPREPO</id>
+        <url>https://github.com/jballurr/mvnrepo/raw/master</url>
+        <releases>
+           <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+     </repository>
+     </repositories>
+	 
+	 
+	 <pluginRepositories>
+     	<pluginRepository>
+     	<id>CSPREPO</id>
+            <name>Apache Snapshot Repository</name>
+			<url>https://www.hnsdevops.com/scm/projects/DSSPOP/repos/dsspop/browse/iag/work/POProject/CSPServices/repository</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+     	</pluginRepository>
+		</pluginRepositories> 
+	<!-- https://mvnrepository.com/artifact/org.json/json -->	
+	<dependencies>
+
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20160810</version>
+</dependency>
+	
+	<dependency>
+    	<groupId>javax</groupId>
+    	<artifactId>javaee-api</artifactId>
+    	<version>7.0</version>
+    	<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.hibernate.common</groupId>
+		<artifactId>hibernate-commons-annotations</artifactId>
+		<version>4.0.1.Final</version>
+		<scope>provided</scope>
+	</dependency>
+
+	
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>4.0.1.Final</version>
+		<scope>provided</scope>
+	</dependency>
+	<!-- Log4j Jar -->
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency>		
+	
+
+	</dependencies>
+	<build>
+		<finalName>ASRestAPIEJB</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>${version.org.jboss.as.plugins.maven.plugin}</version>
+				<configuration>
+					<filename>${project.build.finalName}.jar</filename>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.compiler.plugin}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${version.ejb.plugin}</version>
+				<configuration>
+					<ejbVersion>3.2</ejbVersion>
+					<generateClient>true</generateClient>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
